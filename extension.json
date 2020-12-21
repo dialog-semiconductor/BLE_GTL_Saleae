@@ -1,0 +1,13 @@
+{
+  "name": "GTL decode",
+  "apiVersion": "1.0.0",
+  "author": "Dialog Semiconductor",
+  "version": "0.0.1",
+  "description": "",
+  "extensions": {
+    "GTL decode": {
+      "type": "HighLevelAnalyzer",
+      "entryPoint": "HighLevelAnalyzer.Hla"
+    }
+  }
+}
