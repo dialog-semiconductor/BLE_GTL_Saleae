@@ -61,20 +61,3 @@ class Hla(HighLevelAnalyzer):
             if (self.receive_buffer_pointer == 0):
                 return tempMSG
 
-        '''
-        uartbuffer = int(frame.data['data'][0])
-        if (( self.receive_buffer_pointer == 0 and uartbuffer == 4) or self.receive_buffer_pointer > 0 and (not 'error' in frame.data)):
-            if self.receive_buffer_pointer == 0:
-                self.startTime = frame.start_time #capture the start
-                self.receiveBuffer = [uartbuffer]; 
-            else:
-                self.receiveBuffer.append(uartbuffer);
-            if(self.receive_buffer_pointer >= 2):#Byte 7 and 8 tell how big the message is
-                PAR_LEN = self.receiveBuffer[2]; #Extract the parameter length from the message
-                if ( self.receive_buffer_pointer >= PAR_LEN + 2): #Check to see if the entire message has been received
-                    tempMSG = AnalyzerFrame('gtl', self.startTime, frame.end_time, {'message': bytes(self.receiveBuffer)})
-                    self.receive_buffer_pointer = -1
-            self.receive_buffer_pointer += 1;
-            if (self.receive_buffer_pointer == 0):
-                return tempMSG
-        '''
