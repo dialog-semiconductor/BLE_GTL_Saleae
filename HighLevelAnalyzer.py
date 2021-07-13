@@ -13,12 +13,6 @@ from GTL_definitions import MSG_ID_dict, ERR_CODE_dict, gapm_operation_dict
 
 # High level analyzers must subclass the HighLevelAnalyzer class.
 class Hla(HighLevelAnalyzer):
-    # List of settings that a user can set for this High Level Analyzer.
-    # my_string_setting = StringSetting()
-    # my_number_setting = NumberSetting(min_value=0, max_value=100)
-    # my_choices_setting = ChoicesSetting(choices=('A', 'B'))
-
-    # An optional list of types this analyzer produces, providing a way to customize the way frames are displayed in Logic 2.
     result_types = {
         "gtl": {
             "format": "Message ID: {{data.MSG_ID}}({{data.MSG_ID_decoded}}), Dest ID: {{data.DST_ID}}, Source ID: {{data.SRC_ID}}, Parameter length: {{data.PAR_LEN}}, Data: {{data.data}}"
@@ -42,11 +36,6 @@ class Hla(HighLevelAnalyzer):
         print("Dialog Semiconductor GTL interface decoder")
 
     def decode(self, frame: AnalyzerFrame):
-        """
-        Process a frame from the input analyzer, and optionally return a single `AnalyzerFrame` or a list of `AnalyzerFrame`s.
-
-        The type and data values in `frame` will depend on the input analyzer.
-        """
         return_packet = False
         try:
             if (
@@ -136,9 +125,7 @@ class Hla(HighLevelAnalyzer):
                         sup_to = str(
                             (self.receiveBuffer[16] << 8 | self.receiveBuffer[15]) * 10
                         )  # Extract the supervision timeout from the message
-                        addr_type = self.receiveBuffer[
-                            18
-                        ]  # Extract the address type from the message
+                        addr_type = self.receiveBuffer[18]  # Extract the address type from the message
                         if addr_type == 0:
                             addr_type = "public"
                         else:
@@ -167,8 +154,7 @@ class Hla(HighLevelAnalyzer):
                             (self.receiveBuffer[10] << 8 | self.receiveBuffer[9]) * 1.25
                         )  # Extract the min connection interval from the message
                         con_interval_max = str(
-                            (self.receiveBuffer[12] << 8 | self.receiveBuffer[11])
-                            * 1.25
+                            (self.receiveBuffer[12] << 8 | self.receiveBuffer[11]) * 1.25
                         )  # Extract the max connection interval from the message
                         con_latency = str(
                             self.receiveBuffer[14] << 8 | self.receiveBuffer[13]
