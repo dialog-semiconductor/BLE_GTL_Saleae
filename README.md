@@ -1,13 +1,16 @@
 
-  # GTL decode
+  # GTL interface decoder
   
-## Getting started
+![Screenshot of the decoder working](assets/screenshot.png)
 
-1. Build your extension by updating the Python files for your needs
-2. Create a public Github repo and push your code 
-3. Update this README
-4. Open the Logic app and publish your extension
-5. Create a Github release
-6. Debug your hardware like you've never done before :)
+## Installation
+
+Open the extensions tab in Saleae logic 2, 'GTL interface decoder' should be in the list. If it isn't you can click the three dots and check for updates. 
+
+You can also clone this repo, click the three dots under extentions, click 'Load existing extention' and select the json file from this repo in the window that pops up. 
+
+## Usage
+
+This analyzer can be added like any other analyzer, it only has one input. That should be set to the UART that communicates the GTL commands. As GTL usually has bidirectional communication another analyzer can be added for the second UART line.
 
   
